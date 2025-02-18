@@ -1,0 +1,24 @@
+python 
+class Child(Parent):
+    def __init__(self, required_param, **kwargs):
+        # 提取子类的 required_param，避免与父类冲突
+        super_required_param = kwargs.pop("required_param")
+        super().__init__(super_required_param, **kwargs)
+        self.required_param = required_param
+
+        python 
+class School:
+    def __init__(self):
+        self.teacher=[]
+        self.student=[]
+    def add_member(self,member):
+        if isinstance(member,Student):
+            self.student.append(member)
+        elif isinstance(member,Teacher):
+            self.teacher.append(member)
+        else:
+            raise ValueError("只能添加Stu或Tea对象")
+    def search_by_grade(self,grade):
+        return [stu for stu in self.student if stu.student_id[0:4]==str(grade) ]#前四个字符是[0:4]
+    def count_subject_teachers(self, subject):
+        return sum(1 for teacher in self.teacher if teacher.subject == subject)
